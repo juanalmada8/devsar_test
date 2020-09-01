@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Reservas{% endblock %}
+
+{% block background %}{% load static %}{% static 'core/img/fulbito-3.png' %}{% endblock %}
+
+{% block headers %}
+<h1>Reservas</h1>
+<span class="subheading">Formulario de reserva</span>
+{% endblock %}
+
+{% block content %}
+<div class="about-heading-content">
+  <div class="row">
+    <div class="col-xl-9 col-lg-10 mx-auto">
+      <div class="bg-faded rounded p-5">
+        <!-- formulario de contacto -->
+        <!--El form genera error pero igual se CREA el registro-->
+        {% if 'ok' in request.GET %}
+            <p><b>Se creo la reserva correctamente</b></p>        
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="input-group">
+                    {{reserva_form.cancha}}
+                </div>
+                {{reserva_form.cancha.errors}}
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    {{reserva_form.cliente}}
+                </div>
+                {{reserva_form.cliente.errors}}
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    {{reserva_form.empleado}}
+                </div>
+                {{reserva_form.empleado.errors}}
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    {{reserva_form.fecha_turno}}
+                </div>
+                {{reserva_form.fecha_turno.errors}}
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    {{reserva_form.hora_turno}}
+                </div>
+                {{reserva_form.hora_turno.errors}}
+            </div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar">
+            </div>
+        </form>
+        <!-- fin formulario de contacto -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
